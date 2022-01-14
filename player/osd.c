@@ -253,8 +253,10 @@ static char *get_term_status_msg(struct MPContext *mpctx)
 
         if (s.ts_duration < 0) {
             saddf(&line, "???");
+        } else if (s.ts_duration < 1) {
+            saddf(&line, "%2.1fms", s.ts_duration*1000);
         } else if (s.ts_duration < 10) {
-            saddf(&line, "%2.1fs", s.ts_duration);
+            saddf(&line, "%2.3fs", s.ts_duration);
         } else {
             saddf(&line, "%2ds", (int)s.ts_duration);
         }
